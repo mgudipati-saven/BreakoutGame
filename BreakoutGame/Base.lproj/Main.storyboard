@@ -19,6 +19,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlM-2M-PUL" customClass="BezierPathsView" customModule="BreakoutGame" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="idH-FY-Lc3" appends="YES" id="vdH-zK-sJ2"/>
+                                    <outletCollection property="gestureRecognizers" destination="33L-Uz-RLo" appends="YES" id="bQY-sw-vul"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,6 +39,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOp-mD-9mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="idH-FY-Lc3">
+                    <connections>
+                        <action selector="breakout:" destination="D7q-6G-C2O" id="9MR-Ap-Eha"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="33L-Uz-RLo">
+                    <connections>
+                        <action selector="movePaddle:" destination="D7q-6G-C2O" id="oi8-5m-JT2"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="333" y="283"/>
         </scene>
