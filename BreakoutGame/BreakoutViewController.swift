@@ -25,10 +25,6 @@ class BreakoutViewController: UIViewController
         return CGSize(width: w, height: h)
     }
 
-    var ballSize: CGSize {
-        return CGSize(width: 20, height: 20)
-    }
-    
     var paddleSize: CGSize {
         let w = gameView.bounds.size.width / 4
         let h = brickHeight / 2
@@ -102,6 +98,7 @@ class BreakoutViewController: UIViewController
         static let BallSize = CGSize(width: 20, height: 20)
         static let PaddleSize = CGSize(width: 60, height: 15)
         static let Padding = CGFloat(40)
+        static let WallPadding = CGFloat(5)
     }
     
     var paddle: UIView?
@@ -148,11 +145,11 @@ class BreakoutViewController: UIViewController
                 animator.addBehavior(attachment)
                 attachment?.action = { [unowned self] in
                     if self.paddle?.frame.maxX > self.gameView.frame.maxX {
-                        self.paddle?.frame = CGRect(x: self.gameView.frame.maxX - self.paddleSize.width - self.pad,
-                            y: self.gameView.frame.maxY - self.paddleSize.height - self.pad, width: self.paddleSize.width, height: self.paddleSize.height)
+                        self.paddle?.center = CGPoint(x: self.gameView.frame.maxX - Constants.PaddleSize.width / 2 - Constants.WallPadding,
+                            y: self.paddle!.center.y)
                     } else if self.paddle?.frame.minX < self.gameView.frame.minX {
-                        self.paddle?.frame = CGRect(x: self.gameView.frame.minX + self.pad,
-                            y: self.gameView.frame.maxY - self.paddleSize.height - self.pad, width: self.paddleSize.width, height: self.paddleSize.height)
+                        self.paddle?.center = CGPoint(x: self.gameView.frame.minX + Constants.PaddleSize.width / 2 + Constants.WallPadding,
+                            y: self.paddle!.center.y)
                     }
                     let path = UIBezierPath(rect: self.paddle!.frame)
                     self.breakoutBehavior.addBarrier(path, named: BoundaryNames.Paddle)
